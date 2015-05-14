@@ -1,10 +1,18 @@
 require('bundler/setup')
 Bundler.require(:default, :production)
+require('pry')
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 
 get('/') do
+  @categories = Category.all()
+  erb(:index)
+end
+
+post('/category') do
+  name = params.fetch('name')
+  Category.create({:name => name})
   @categories = Category.all()
   erb(:index)
 end
@@ -28,20 +36,14 @@ delete('/categories/:id') do
   erb(:index)
 end
 
-post('/category_add') do
-  name = params.fetch('name')
-  Category.create({:name => name})
-  @categories = Category.all()
-  erb(:index)
-end
 
-get('/recipe_add') do
+get('/recipes') do
   @recipes = Recipe.all()
-  @categories = Category.all()
+  #@categories = Category.all()
   erb(:recipe_form)
 end
 
-post('/recipe_add') do
+post('/recipes') do
   name = params.fetch('name')
   ingredients = params.fetch('ingredients')
   instructions = params.fetch('instructions')
@@ -58,10 +60,11 @@ post('/recipe_add') do
   end
 end
 
-
 get('/recipe/:id') do
   @recipe = Recipe.find(params.fetch("id").to_i)
   @categories = Category.all()
+  # @recipe_checked = @recipe.categories.all()
+
   erb(:recipe)
 end
 
@@ -71,6 +74,7 @@ patch('/recipe/:id') do
   ingredients = params.fetch('ingredients')
   instructions = params.fetch('instructions')
   rating = params.fetch('rating')
+  @recipe_checked = recipe.categories.all()
   @recipe.update({:name => name, :ingredients => ingredients, :instructions => instructions, :rating => rating})
   @recipes = Recipe.all()
   erb(:recipe_form)

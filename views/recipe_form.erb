@@ -1,6 +1,6 @@
 <h1>Add a Recipe</h1>
 
-<form action="/recipe_add" method="post">
+<form action="/recipes" method="post">
   <div class="form-group">
     <label for="name">Recipe Name:</label>
     <input name="name" id="name" type="text"><br><br>
@@ -16,8 +16,8 @@
 
 <br><br>
 <h4>These are all the recipes</h4>
-<ul>
-  <% @recipes.each() do |recipe| %>
-  <li><a href="/recipe/<%= recipe.id %>"><%= recipe.name %></a></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @recipes.each() do |recipe| %>
+      <li><a href="/recipe/<%= recipe.id %>"><%= recipe.name %></a></li>
+    <% end %>
+  </ul>

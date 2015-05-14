@@ -1,6 +1,5 @@
 <h1><%= @recipe.name %></h1>
 
-
 <form action="/recipe/<%=@recipe.id()%>" method="post">
   <input name="_method" type="hidden" value="patch">
   <div class="form-group">
@@ -12,16 +11,34 @@
     <TEXTAREA NAME="instructions" ROWS=5 COLS=30><%= @recipe.instructions %></TEXTAREA><br><br>
     <label for="rating">Rating:</label>
     <TEXTAREA NAME="rating" ROWS=1 COLS=30><%= @recipe.rating %></TEXTAREA><br>
-</div>
-<button type="submit" class="btn btn-success">Update</button>
+  </div>
+  <button type="submit" class="btn btn-success">Update</button>
 </form>
 
+
+<p>Please rate this item:</p>
+
+<fieldset class="rating">
+  <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+  <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+  <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+  <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+  <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+  <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+  <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+  <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+  <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+  <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+</fieldset>
+<br><br>
 <form action="/recipe/<%= @recipe.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <div class="form-group">
     <button type="submit" class="btn-danger">Delete</button>
   </div>
 </form>
+
+
 
 <br>
 <h3>Select all catagories for this recipe:</h3>
@@ -33,7 +50,13 @@
     <% @categories.each() do |category| %>
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="category_ids[]" value="<%= category.id() %>"><%= category.name() %>
+        <input type="checkbox" name="category_ids[]" value="<%= category.id() %>"
+        <% if @recipe.categories.includes?(category.id()) %>
+        checked
+        >
+        <% else %>
+      <%= category.name() %>
+        <% end %>
         </label>
       </div>
       <% end %>
