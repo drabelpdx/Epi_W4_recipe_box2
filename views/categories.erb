@@ -1,0 +1,33 @@
+<h1><%= @category.name %></h1>
+
+<p>Change category name</p>
+
+<form action="/categories/<%=@category.id()%>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <div class="form-group">
+    <label for="name">Category Name:</label>
+    <input name="name" id="name" type="text"><br><br>
+  </div>
+  <button type="submit" class="btn btn-success">Update</button>
+</form>
+
+<form action="/categories/<%= @category.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <div class="form-group">
+    <button type="submit" class="btn-danger">Delete</button>
+  </div>
+</form>
+
+<% if @category.recipes().any? %>
+
+<h3>Here are all the recipes for this category:</h3>
+
+<ul>
+  <% @category.recipes().each() do |recipe| %>
+  <li><%= recipe.name() %></li>
+  <% end %>
+</ul>
+
+<% else %>
+<p> There are no recipes for this category yet!</p>
+<% end %>
