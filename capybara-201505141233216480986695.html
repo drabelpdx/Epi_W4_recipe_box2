@@ -1,4 +1,18 @@
-<h1>Add a Recipe</h1>
+<html>
+<head>
+  <title>Recipe Box</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    -
+    <a href="/recipe_add">Add a Recipe</a>
+  </nav>
+  <div class="container">
+    <h1>Add a Recipe</h1>
 
 <form action="/recipe_add" method="post">
   <div class="form-group">
@@ -17,7 +31,19 @@
 <br><br>
 <h4>These are all the recipes</h4>
 <ul>
-  <% @recipes.each() do |recipe| %>
-  <li><a href="/recipe/<%= recipe.id %>"><%= recipe.name %></a></li>
-  <% end %>
+  
+  <li><a href="/recipe/2">pizza</a></li>
+  
+  <li><a href="/recipe/1">Bagel</a></li>
+  
+  <li><a href="/recipe/3">Pasta Salad</a></li>
+  
+  <li><a href="/recipe/4">Pasta Salad</a></li>
+  
+  <li><a href="/recipe/5">Pasta Salad</a></li>
+  
 </ul>
+
+  </div>
+</body>
+</html>

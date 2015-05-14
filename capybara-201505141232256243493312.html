@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Recipe Box</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    -
+    <a href="/recipe_add">Add a Recipe</a>
+  </nav>
+  <div class="container">
+    <h1>Recipe Box</h1>
+
+<br><br>
+<h2>Pick a Category</h2>
+<ul>
+  
+  <li><a href="/categories/1">Breakfast</a></li>
+  
+  <li><a href="/categories/2">Lunch</a></li>
+  
+  <li><a href="/categories/3">Dinner</a></li>
+  
+  <li><a href="/categories/4">Beverage</a></li>
+  
+  <li><a href="/categories/5">Beverage</a></li>
+  
+  <li><a href="/categories/6">Beverage</a></li>
+  
+  <li><a href="/categories/7">Beverage</a></li>
+  
+</ul>
+<br><br>
+<h4>Add a Category</h4>
+<form action="/category_add" method="post">
+  <div class="form-group">
+    <input name="name" id="name" type="text">
+    </div>
+  <button type="submit" class="btn btn-success">Add Category</button>
+</form>
+
+  </div>
+</body>
+</html>

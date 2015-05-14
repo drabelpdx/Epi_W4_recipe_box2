@@ -12,4 +12,6 @@ end
 group(:test) do
   gem('rspec')
   gem('pry')
+  gem ('shoulda-matchers')
+  gem('launchy')
 end

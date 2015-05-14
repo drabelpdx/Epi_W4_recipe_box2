@@ -1,8 +1,8 @@
 require('bundler/setup')
-require('pry')
 Bundler.require(:default, :production)
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
+
 
 get('/') do
   @categories = Category.all()
@@ -52,7 +52,7 @@ post('/recipe_add') do
   @recipe = Recipe.new({:name => name, :ingredients => ingredients, :instructions => instructions, :rating => rating})
 
   if @recipe.save
-    erb(:index)
+    erb(:recipe_form)
   else
     erb(:errors)
   end
