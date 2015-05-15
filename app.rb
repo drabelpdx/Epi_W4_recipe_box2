@@ -39,7 +39,7 @@ end
 
 get('/recipes') do
   @recipes = Recipe.all()
-  #@categories = Category.all()
+  @categories = Category.all()
   erb(:recipe_form)
 end
 
@@ -63,7 +63,7 @@ end
 get('/recipe/:id') do
   @recipe = Recipe.find(params.fetch("id").to_i)
   @categories = Category.all()
-  # @recipe_checked = @recipe.categories.all()
+  @categories_checked = @recipe.categories.ids
 
   erb(:recipe)
 end
@@ -74,9 +74,10 @@ patch('/recipe/:id') do
   ingredients = params.fetch('ingredients')
   instructions = params.fetch('instructions')
   rating = params.fetch('rating')
-  @recipe_checked = recipe.categories.all()
   @recipe.update({:name => name, :ingredients => ingredients, :instructions => instructions, :rating => rating})
   @recipes = Recipe.all()
+  @categories = Category.all()
+  @categories_checked = @recipe.categories.ids
   erb(:recipe_form)
 end
 
@@ -93,5 +94,6 @@ patch('/category/recipes/:id') do
   category_ids = params.fetch("category_ids")
   @recipe.update({:category_ids => category_ids})
   @categories = Category.all()
+  @categories_checked = @recipe.categories.ids
   erb(:recipe)
 end
